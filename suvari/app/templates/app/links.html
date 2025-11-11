@@ -1,0 +1,19 @@
+﻿{% extends "app/layout.html" %}
+
+{% block content %}
+{% load staticfiles %}
+
+<div class="links-container">
+    <h1 class="anketa-title">Подробнее о РСО ЧувГУ</h1>
+
+    <div class="content-card">
+        <a href="https://www.chuvsu.ru/rossijskie-studencheskie-otryady/" target="_blank">
+            <img src="{% static 'app/content/ресурс.jpg' %}"
+                 alt="РСО ЧувГУ"
+                 class="links-image img-responsive" />
+        </a>
+        <p class="links-caption">(Нажмите на картинку для перехода по ссылке)</p>
+    </div>
+</div>
+
+{% endblock %}

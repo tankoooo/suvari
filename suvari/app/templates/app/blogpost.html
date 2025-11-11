@@ -1,0 +1,78 @@
+﻿{% extends "app/layout.html" %}
+
+{% block content %}
+<div class="blogpost-container">
+    <div class="blogpost-header">
+        <a href="{% url 'blog' %}" class="btn-back">
+            <i class="glyphicon glyphicon-arrow-left"></i> НАЗАД К СТАТЬЯМ
+        </a>
+        <h1 class="blogpost-title">{{ post_1.title }}</h1>
+        <div class="blogpost-meta">
+            <span class="post-date"><i class="glyphicon glyphicon-time"></i> {{ post_1.posted }}</span>
+        </div>
+    </div>
+
+    {% if post_1.image and post_1.image.url != '/media/temp.jpg' %}
+    <div class="blogpost-image-wrapper">
+        <img src="{{ post_1.image.url }}" alt="Картинка статьи блога" class="blogpost-image" />
+    </div>
+    {% endif %}
+
+    <div class="blogpost-content content-card">
+        <div class="post-text">
+            {{ post_1.content|linebreaksbr }}
+        </div>
+    </div>
+
+    <div class="comments-section">
+        <div class="comments-header">
+            <h3><i class="glyphicon glyphicon-comment"></i> Комментарии ({{ comments.count }})</h3>
+        </div>
+
+        {% if user.is_authenticated %}
+        <div class="add-comment content-card">
+            <h4>Добавить комментарий</h4>
+            <form method="POST" class="comment-form">
+                {% csrf_token %}
+                <div class="form-group">
+                    {{ form.as_p }}
+                </div>
+                <button type="submit" class="btn btn-primary btn-comment">
+                    <i class="glyphicon glyphicon-send"></i> Отправить комментарий
+                </button>
+            </form>
+        </div>
+        {% else %}
+        <div class="auth-required content-card text-center">
+            <h4><i class="glyphicon glyphicon-user"></i> Для добавления комментария</h4>
+            <p>Пожалуйста, авторизуйтесь</p>
+            <a href="{% url 'login' %}" class="btn btn-primary">Войти</a>
+        </div>
+        {% endif %}
+
+        <div class="comments-list">
+            {% for comment in comments %}
+            <div class="comment-item content-card fade-in">
+                <div class="comment-header">
+                    <div class="comment-author">
+                        <i class="glyphicon glyphicon-user"></i>
+                        <strong>{{ comment.author }}</strong>
+                    </div>
+                    <div class="comment-date">
+                        <i class="glyphicon glyphicon-calendar"></i>
+                        {{ comment.date }}
+                    </div>
+                </div>
+                <div class="comment-text">
+                    {{ comment.text|linebreaksbr }}
+                </div>
+            </div>
+            {% empty %}
+            <div class="no-comments content-card text-center">
+                <p>Пока нет комментариев. Будьте первым!</p>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+{% endblock %}

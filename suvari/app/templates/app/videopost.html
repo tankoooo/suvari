@@ -1,0 +1,27 @@
+﻿{% extends "app/layout.html" %}
+
+{% block content %}
+<div class="container-fluid">
+    <div class="content-card fade-in">
+        
+        <h1 class="text-center">Видео</h1>
+
+        <div class="row">
+            <div class="col-md-8 col-md-offset-2">
+                <div class="video-container text-center">
+                    <h2 class="video-title">Чувашия</h2>
+                    <div class="video-wrapper hover-lift">
+                        <video src="/media/чувашия.mov" controls="controls"
+                               poster="/media/zatanda.jpg" class="video-player">
+                            Ваш браузер не поддерживает видео тег.
+                        </video>
+                    </div>
+                    <div class="video-info">
+                        <p class="text-muted">Саеров Игорь</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

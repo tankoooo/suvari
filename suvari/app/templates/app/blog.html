@@ -1,0 +1,40 @@
+﻿{% extends "app/layout.html" %}
+
+{% block content %}
+<div class="blog-container">
+    <div class="blog-header text-center">
+        <h1>Новости </h1> 
+        <p class="blog-subtitle">Последние новости и статьи</p>
+    </div>
+
+    {% for post in posts %}
+    <div class="blog-post content-card hover-lift fade-in">
+        <div class="row">
+            {% if post.image and post.image.url != '/media/temp.jpg' %}
+            <div class="col-md-4">
+                <div class="blog-image-wrapper">
+                    <img src="{{ post.image.url }}" alt="{{ post.title }}" class="blog-image" />
+                </div>
+            </div>
+            <div class="col-md-8">
+                {% else %}
+                <div class="col-md-12">
+                    {% endif %}
+                    <div class="blog-post-content">
+                        <h2 class="blog-post-title">{{ post.title }}</h2>
+                        <div class="blog-post-meta">
+                            <span class="post-date"><i class="glyphicon glyphicon-time"></i> {{ post.posted }}</span>
+                        </div>
+                        <p class="blog-post-description">{{ post.description }}</p>
+                        <div class="blog-post-actions">
+                            <a href="{% url 'blogpost' parameter=post.id %}" class="btn btn-primary btn-read-more">
+                                <i class="glyphicon glyphicon-chevron-right"></i> ЧИТАТЬ ДАЛЕЕ
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+    {% endblock %}

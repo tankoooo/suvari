@@ -1,0 +1,124 @@
+﻿{% extends "app/layout.html" %}
+
+{% block content %}
+{% if form != None %}
+<div class="container-fluid">
+    <div class="content-card fade-in">
+        <div class="anketa-container">
+            <h1 class="anketa-title">Заполните анкету и мы с вами свяжемся!</h1>
+
+            <form method="post" class="anketa-form">
+                {% csrf_token %}
+
+                <div class="form-group">
+                    <label for="{{ form.name.id_for_label }}" class="form-label">{{ form.name.label }}:</label>
+                    {{ form.name }}
+                </div>
+
+                <div class="form-group">
+                    <label for="{{ form.city.id_for_label }}" class="form-label">{{ form.city.label }}:</label>
+                    {{ form.city }}
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">{{ form.gender.label }}:</label>
+                    <div class="radio-group">
+                        {{ form.gender }}
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="{{ form.job.id_for_label }}" class="form-label">{{ form.job.label }}:</label>
+                    {{ form.job }}
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">{{ form.internet.label }}:</label>
+                    <div class="radio-group">
+                        {{ form.internet }}
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="checkbox-group">
+                        {{ form.notice }}
+                        <label for="{{ form.notice.id_for_label }}" class="checkbox-label">{{ form.notice.label }}</label>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="{{ form.email.id_for_label }}" class="form-label">{{ form.email.label }}:</label>
+                    {{ form.email }}
+                </div>
+
+                <div class="form-group">
+                    <label for="{{ form.message.id_for_label }}" class="form-label">{{ form.message.label }}:</label>
+                    {{ form.message }}
+                </div>
+
+                <button type="submit" class="submit-btn" id="submit-btn">Отправить</button>
+            </form>
+        </div>
+    </div>
+</div>
+{% else %}
+<div class="container-fluid">
+    <div class="content-card fade-in">
+        <div class="thank-you-container">
+            <h1 class="anketa-title">Благодарим за предоставленную информацию!</h1>
+            <h3 class="thank-you-title">Вы сообщили о себе следующее:</h3>
+
+            <ul class="data-list">
+                <li><span>Имя:</span>{{ data.name }}</li>
+                <li><span>Город:</span>{{ data.city }}</li>
+                <li><span>Пол:</span>{{ data.gender }}</li>
+                <li><span>Работа:</span>{{ data.job }}</li>
+                <li><span>В интернете:</span>{{ data.internet }}</li>
+                <li><span>Получать новости:</span>{{ data.notice }}</li>
+                <li><span>Ваш e-mail:</span>{{ data.email }}</li>
+                <li><span>Информация о себе:</span>{{ data.message }}</li>
+            </ul>
+        </div>
+    </div>
+</div>
+{% endif %}
+
+<script>
+    // Обновленные функции для новых стилей
+    function submitButtonMouseOver() {
+        $('#submit-btn').css('transform', 'translateY(-3px)');
+        $('#submit-btn').css('box-shadow', '0 8px 20px rgba(220, 53, 69, 0.4)');
+    }
+
+    function submitButtonMouseOut() {
+        $('#submit-btn').css('transform', 'translateY(0)');
+        $('#submit-btn').css('box-shadow', '0 5px 15px rgba(220, 53, 69, 0.3)');
+    }
+
+    function inputFieldFocus() {
+        $(this).css('background-color', '#fffaf0');
+        $(this).css('border-color', 'var(--primary-red)');
+    }
+
+    function inputFieldBlur() {
+        $(this).css('background-color', '');
+        $(this).css('border-color', '#e0e0e0');
+    }
+
+    $(document).ready(function () {
+        // Добавляем классы к полям формы для стилизации
+        $('#id_name, #id_city, #id_job, #id_email').addClass('form-control-custom');
+        $('#id_message').addClass('form-control-custom');
+        $('select').addClass('form-select');
+
+        // Обработчики для кнопки
+        $('#submit-btn').mouseover(submitButtonMouseOver);
+        $('#submit-btn').mouseout(submitButtonMouseOut);
+
+        // Обработчики для полей ввода
+        $('#id_name, #id_city, #id_job, #id_email, #id_message')
+            .focus(inputFieldFocus)
+            .blur(inputFieldBlur);
+    });
+</script>
+{% endblock %}

@@ -1,0 +1,98 @@
+﻿{% extends "app/layout.html" %}
+
+{% block content %}
+{% load staticfiles %}
+<div id="myCarousel" class="carousel slide" data-ride="carousel" data-interval="2000">
+
+    <ol class="carousel-indicators">
+
+        <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+
+        <li data-target="#myCarousel" data-slide-to="1"></li>
+
+        <li data-target="#myCarousel" data-slide-to="2"></li>
+
+        <li data-target="#myCarousel" data-slide-to="3"></li>
+
+    </ol>
+
+    <div class="carousel-inner" role="listbox">
+
+        <div class="item active">
+
+            <img src="{% static 'app/content/banner1.jpg'%} " alt="Первый слайд" class="img-responsive" />
+
+            <div class="carousel-caption" role="option">
+
+            </div>
+
+        </div>
+
+        <div class="item">
+
+            <img src="{% static 'app/content/banner2.jpg'%}" alt="Второй слайд"  class="img-responsive" />
+
+            <div class="carousel-caption" role="option">
+
+          
+            </div>
+
+        </div>
+
+        <div class="item">
+
+            <img src=" {% static 'app/content/banner3.jpg'%} " alt="Третий слайд"  class="img-responsive" />
+
+            <div class="carousel-caption" role="option">
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
+
+        <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+
+        <span class="sr-only">Previous</span>
+
+    </a>
+
+    <a class="right carousel-control" href="#myCarousel" role="button" data-slide="next">
+
+        <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+
+        <span class="sr-only">Next</span>
+
+    </a>
+
+</div>
+<div class="jumbotron">
+    <h1>Студенческий отряд "Сувары"</h1>
+    <p class="lead">Российский студенческий отряд путинного направления, работающий на Камчатке. Специализация: рыбообработчики и сезонные рабочие.</p>
+    <p><a href="{% url 'about' %}" class="btn btn-primary btn-large">Узнать больше &raquo;</a></p>
+</div>
+
+<div class="row">
+    <div class="col-md-4">
+        <h2>О движении</h2>
+        <p>
+            "Сувары" - это студенческий отряд путинного направления, объединяющий молодежь для работы 
+            на рыбных промыслах Камчатки. Сохраняем традиции древних чувашей - суваров.
+        </p>
+        <p><a class="btn btn-default" href="{% url 'about' %}">Подробнее &raquo;</a></p>
+    </div>
+    <div class="col-md-4">
+        <h2>Наша работа</h2>
+        <p>Сезонная работа на камчатских рыбзаводах: обработка рыбы, работа на производстве, участие в путинных кампаниях.</p>
+        <p><a class="btn btn-default" href="{% url 'blog' %}">Наши проекты &raquo;</a></p>
+    </div>
+    <div class="col-md-4">
+        <h2>Присоединиться</h2>
+        <p>Хочешь стать частью нашего отряда? Участвуй в путинных кампаниях на Камчатке и развивайся вместе с нами!</p>
+        <p><a class="btn btn-default" href="{% url 'contact' %}">Связаться с нами &raquo;</a></p>
+    </div>
+</div>
+
+{% endblock %}

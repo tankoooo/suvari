@@ -1,0 +1,33 @@
+﻿{% extends "app/layout.html" %}
+
+{% block content %}
+
+<div class="contact-container">
+    <h1 class="anketa-title">{{ title }}</h1>
+    
+
+    <div class="contact-address">
+        <h4><i class="glyphicon glyphicon-map-marker"></i> Адрес</h4>
+        <address>
+            <strong>Штаб студенческих трудовых отрядов ЧувГУ</strong><br />
+        </address>
+    </div>
+
+    <div class="contact-links">
+        <h4><i class="glyphicon glyphicon-share"></i> Ссылки</h4>
+        <div class="contact-link">
+            <strong>ВК "Сувары":</strong> 
+            <a href="https://vk.com/spyo_suvary" target="_blank">spyo_suvary</a>
+        </div>
+        <div class="contact-link">
+            <strong>ВК "СТО ЧувГУ":</strong> 
+            <a href="https://vk.com/shtabsto" target="_blank">shtabsto</a>
+        </div>
+        <div class="contact-link">
+            <strong>ТГ "СТО ЧувГУ":</strong> 
+            <a href="https://t.me/shtabsto" target="_blank">shtabsto</a>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

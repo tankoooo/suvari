@@ -1,0 +1,40 @@
+﻿{% extends "app/layout.html" %}
+
+{% block content %}
+<div class="newpost-container">
+    <div class="newpost-header text-center">
+        <h1 class="newpost-title">Добавить статью</h1>
+        <p class="newpost-subtitle">Поделитесь своими мыслями с сообществом</p>
+    </div>
+
+    <div class="newpost-form content-card">
+        <form method="POST" enctype="multipart/form-data" class="blog-form">
+            {% csrf_token %}
+            <div class="form-fields">
+                {% for field in blogform %}
+                <div class="form-group">
+                    <label for="{{ field.id_for_label }}" class="form-label">
+                        {{ field.label }}
+                        {% if field.field.required %}<span class="required">*</span>{% endif %}
+                    </label>
+                    {{ field }}
+                    {% if field.help_text %}
+                    <small class="form-help">{{ field.help_text }}</small>
+                    {% endif %}
+                    {% if field.errors %}
+                    <div class="form-errors">
+                        {{ field.errors }}
+                    </div>
+                    {% endif %}
+                </div>
+                {% endfor %}
+            </div>
+            <div class="form-actions text-center">
+                <button type="submit" class="btn btn-primary btn-save">
+                    <i class="glyphicon glyphicon-floppy-disk"></i> Сохранить статью
+                </button>
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock %}
